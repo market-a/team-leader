@@ -4,20 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0b1020" />
-  <title>دليل قناة البرمجة | نسخة تفاعلية</title>
+  <title>دليل قناة البرمجة | الصفحة الرئيسية</title>
   <style>
     :root{
       --bg:#070b16;
       --bg2:#0b1630;
       --card: rgba(14, 20, 40, .62);
-      --card2: rgba(10, 15, 30, .45);
       --line: rgba(255,255,255,.12);
       --text:#f5f7ff;
       --muted:#b7c2e0;
       --accent:#7c5cff;
       --accent2:#26e0ff;
       --accent3:#00ffa8;
-      --warn:#ffcc66;
       --shadow: 0 20px 60px rgba(0,0,0,.45);
       --radius: 28px;
     }
@@ -34,89 +32,15 @@
         linear-gradient(160deg, var(--bg), var(--bg2));
       color:var(--text);
       overflow-x:hidden;
-    }
-
-    /* animated moving background */
-    .bg-orbits, .bg-orbits::before, .bg-orbits::after{
-      position:fixed;
-      inset:auto;
-      pointer-events:none;
-      border-radius:50%;
-      filter: blur(.2px);
-      opacity:.9;
-      z-index:0;
-      mix-blend-mode: screen;
-    }
-    .bg-orbits{
-      width:440px; height:440px;
-      top:12%;
-      left:-120px;
-      border:1px solid rgba(124,92,255,.35);
-      box-shadow: inset 0 0 0 14px rgba(124,92,255,.05), 0 0 80px rgba(124,92,255,.20);
-      animation: orbit 14s linear infinite;
-      transform-style: preserve-3d;
-    }
-    .bg-orbits::before{
-      content:"";
-      width:260px; height:260px;
-      top:18%;
-      left:18%;
-      border:1px solid rgba(38,224,255,.35);
-      box-shadow: inset 0 0 0 12px rgba(38,224,255,.05), 0 0 70px rgba(38,224,255,.18);
-      animation: orbitReverse 10s linear infinite;
-      transform-style: preserve-3d;
-    }
-    .bg-orbits::after{
-      content:"";
-      width:140px; height:140px;
-      top:40%;
-      left:40%;
-      border:1px solid rgba(0,255,168,.28);
-      box-shadow: inset 0 0 0 8px rgba(0,255,168,.05), 0 0 45px rgba(0,255,168,.18);
-      animation: pulse 4s ease-in-out infinite;
-    }
-
-    .orb{
-      position:fixed;
-      z-index:0;
-      border-radius:50%;
-      filter: blur(6px);
-      pointer-events:none;
-      opacity:.75;
-      animation: float 9s ease-in-out infinite;
-      mix-blend-mode: screen;
-    }
-    .orb.one{ width:120px; height:120px; background:radial-gradient(circle, rgba(124,92,255,.75), rgba(124,92,255,0)); top:18%; right:8%; }
-    .orb.two{ width:90px; height:90px; background:radial-gradient(circle, rgba(38,224,255,.7), rgba(38,224,255,0)); bottom:18%; left:10%; animation-duration:11s; }
-    .orb.three{ width:150px; height:150px; background:radial-gradient(circle, rgba(0,255,168,.6), rgba(0,255,168,0)); top:56%; left:36%; animation-duration:13s; }
-
-    .cursor-glow{
-      position:fixed;
-      width:220px; height:220px;
-      border-radius:50%;
-      pointer-events:none;
-      transform:translate(-50%,-50%);
-      background:radial-gradient(circle, rgba(124,92,255,.16), rgba(38,224,255,.08), transparent 70%);
-      z-index:1;
-      filter: blur(4px);
-      mix-blend-mode: screen;
+      min-height:100vh;
     }
 
     .wrap{
       position:relative;
       z-index:2;
-      width:min(1200px, calc(100% - 24px));
+      width:min(1100px, calc(100% - 24px));
       margin:0 auto;
-      padding:24px 0 60px;
-    }
-
-    .hero{
-      min-height:92vh;
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:24px;
-      align-items:center;
-      padding-top:10px;
+      padding:28px 0 60px;
     }
 
     .panel{
@@ -128,11 +52,20 @@
       -webkit-backdrop-filter: blur(18px);
     }
 
+    .hero{
+      min-height:92vh;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:24px;
+      align-items:center;
+    }
+
     .hero-copy{
       padding:34px;
       position:relative;
       overflow:hidden;
     }
+
     .hero-copy::before{
       content:"";
       position:absolute;
@@ -142,6 +75,7 @@
       opacity:.8;
       z-index:0;
     }
+
     .hero-copy > *{ position:relative; z-index:1; }
 
     .badge{
@@ -156,6 +90,7 @@
       font-size:14px;
       margin-bottom:18px;
     }
+
     .badge .dot{
       width:10px;height:10px;border-radius:50%;
       background:var(--accent3);
@@ -169,14 +104,16 @@
       margin:0 0 14px;
       letter-spacing:-.03em;
     }
+
     .gradient-text{
       background:linear-gradient(90deg, #ffffff, #9ad9ff 40%, #9c8cff 68%, #7fffd4);
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
     }
+
     .lead{
-      font-size:clamp(1rem, 1.35vw, 1.18rem);
+      font-size:clamp(1rem, 1.35vw, 1.12rem);
       line-height:1.95;
       color:var(--muted);
       margin:0 0 22px;
@@ -189,6 +126,7 @@
       gap:12px;
       margin-top:18px;
     }
+
     .btn{
       appearance:none;
       border:none;
@@ -205,14 +143,18 @@
       align-items:center;
       gap:10px;
     }
-    .btn:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 18px 48px rgba(124,92,255,.30); }
+
+    .btn:hover{
+      transform:translateY(-3px) scale(1.02);
+      box-shadow:0 18px 48px rgba(124,92,255,.30);
+    }
+
     .btn.secondary{
       color:var(--text);
       background:rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.12);
       box-shadow:none;
     }
-    .btn:active{ transform:translateY(0) scale(.98); }
 
     .stats{
       display:grid;
@@ -220,6 +162,7 @@
       gap:14px;
       margin-top:24px;
     }
+
     .stat{
       padding:16px;
       border-radius:20px;
@@ -227,15 +170,16 @@
       border:1px solid rgba(255,255,255,.08);
       min-height:92px;
     }
+
     .stat strong{
       display:block;
       font-size:1.45rem;
       margin-bottom:6px;
       color:#fff;
     }
+
     .stat span{ color:var(--muted); font-size:.95rem; line-height:1.6; }
 
-    /* 3D ring stage */
     .stage{
       min-height:560px;
       display:grid;
@@ -243,271 +187,90 @@
       position:relative;
       overflow:hidden;
       padding:18px;
-      perspective:1200px;
-    }
-    .ring-3d{
-      position:relative;
-      width:min(420px, 82vw);
-      aspect-ratio:1;
-      transform-style:preserve-3d;
-      animation: spin3d 14s linear infinite;
-      display:grid;
-      place-items:center;
-    }
-    .ring-3d .core{
-      position:absolute;
-      width:56%;
-      aspect-ratio:1;
-      border-radius:50%;
-      background:
-        radial-gradient(circle at 30% 28%, rgba(255,255,255,.34), rgba(255,255,255,.08) 24%, rgba(255,255,255,0) 46%),
-        radial-gradient(circle at 55% 60%, rgba(38,224,255,.18), rgba(124,92,255,.08) 50%, rgba(0,0,0,0) 72%),
-        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.12),
-        inset 0 -28px 40px rgba(0,0,0,.35),
-        0 20px 60px rgba(0,0,0,.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      animation: bounce 3.8s ease-in-out infinite;
-    }
-    .ring-3d .hole{
-      position:absolute;
-      width:34%;
-      aspect-ratio:1;
-      border-radius:50%;
-      background:linear-gradient(180deg, rgba(9,12,22,1), rgba(9,12,22,.65));
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.05),
-        inset 0 0 35px rgba(0,0,0,.75);
-      z-index:3;
-    }
-    .ring-3d .rim{
-      position:absolute;
-      inset:0;
-      border-radius:50%;
-      background:
-        conic-gradient(from 45deg,
-          rgba(124,92,255,.95),
-          rgba(38,224,255,.85),
-          rgba(0,255,168,.9),
-          rgba(255,255,255,.18),
-          rgba(124,92,255,.95));
-      -webkit-mask: radial-gradient(circle, transparent 39%, #000 41%, #000 58%, transparent 60%);
-      mask: radial-gradient(circle, transparent 39%, #000 41%, #000 58%, transparent 60%);
-      filter: blur(.2px) drop-shadow(0 0 24px rgba(124,92,255,.35)) drop-shadow(0 0 28px rgba(38,224,255,.18));
-      transform: rotateX(68deg) rotateZ(10deg);
-      opacity:.95;
-    }
-    .ring-3d .rim.two{
-      inset:16px;
-      opacity:.7;
-      transform: rotateX(68deg) rotateZ(-25deg);
-      animation: spin2 11s linear infinite reverse;
-    }
-    .ring-3d .rim.three{
-      inset:34px;
-      opacity:.45;
-      transform: rotateX(68deg) rotateZ(35deg);
-      animation: spin2 8s linear infinite;
     }
 
-    .floating-tags{
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      transform-style:preserve-3d;
+    .menu{
+      width:100%;
+      padding:26px;
     }
-    .tag{
-      position:absolute;
-      padding:10px 14px;
-      border-radius:999px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      color:#fff;
-      font-size:14px;
-      box-shadow:0 0 24px rgba(124,92,255,.18);
-      backdrop-filter: blur(14px);
-      animation: drift 7s ease-in-out infinite;
-    }
-    .tag.t1{ top:8%; right:10%; animation-delay:-1s; }
-    .tag.t2{ top:22%; left:4%; animation-delay:-3s; }
-    .tag.t3{ bottom:20%; right:4%; animation-delay:-4s; }
-    .tag.t4{ bottom:8%; left:14%; animation-delay:-2s; }
 
-    .section{
-      margin-top:22px;
-      padding:28px;
+    .menu h2{
+      margin:0 0 10px;
+      font-size:clamp(1.4rem, 2.4vw, 2.2rem);
     }
-    .section h2{
-      margin:0 0 14px;
-      font-size:clamp(1.5rem, 2.5vw, 2.4rem);
-    }
-    .section p.sub{
-      margin:0 0 22px;
+
+    .menu p{
+      margin:0 0 20px;
       color:var(--muted);
       line-height:1.9;
-      max-width:70ch;
     }
 
-    .grid-2{
+    .grid{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:16px;
-    }
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
+      grid-template-columns:1fr;
       gap:16px;
     }
 
-    .card{
-      border-radius:24px;
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
-      overflow:hidden;
-      transform-style:preserve-3d;
-      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-      position:relative;
-      min-height:180px;
-    }
-    .card:hover{
-      transform: translateY(-6px) rotateX(4deg) rotateY(-4deg);
-      box-shadow: 0 20px 50px rgba(0,0,0,.28), 0 0 0 1px rgba(255,255,255,.12), 0 0 35px rgba(124,92,255,.12);
-      border-color: rgba(255,255,255,.18);
-    }
-    .card .inner{
-      padding:20px;
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .icon{
-      width:48px;height:48px;border-radius:16px;
-      display:grid;place-items:center;
-      background:linear-gradient(135deg, rgba(124,92,255,.25), rgba(38,224,255,.15));
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: 0 0 22px rgba(38,224,255,.10);
-      font-size:22px;
-      flex:0 0 auto;
-    }
-    .card h3{ margin:0; font-size:1.15rem; }
-    .card p{ margin:0; color:var(--muted); line-height:1.85; }
-
-    .flip-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:16px;
-    }
-    .flip{
-      perspective:1200px;
-      min-height:220px;
-    }
-    .flip .box{
-      position:relative;
-      width:100%;height:100%;
-      transition:transform .8s cubic-bezier(.2,.8,.2,1);
-      transform-style:preserve-3d;
-    }
-    .flip:hover .box{ transform:rotateY(180deg); }
-    .face{
-      position:absolute;
-      inset:0;
-      backface-visibility:hidden;
-      border-radius:24px;
-      border:1px solid rgba(255,255,255,.12);
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      box-shadow: var(--shadow);
-      padding:20px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .face.back{
-      transform:rotateY(180deg);
-      background:
-        radial-gradient(circle at top right, rgba(38,224,255,.12), transparent 25%),
-        linear-gradient(180deg, rgba(18,25,48,.9), rgba(8,12,22,.78));
-    }
-
-    .chip-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:4px;
-    }
-    .chip{
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .accordion{
-      display:grid;
-      gap:12px;
-    }
-    .acc-item{
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.05);
-      overflow:hidden;
-    }
-    .acc-head{
-      width:100%;
-      background:none;
-      border:none;
-      color:var(--text);
-      font:inherit;
-      padding:16px 18px;
+    .link-card{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      cursor:pointer;
-      text-align:right;
+      gap:16px;
+      padding:18px 20px;
+      border-radius:24px;
+      text-decoration:none;
+      color:var(--text);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.10);
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
     }
-    .acc-head strong{ font-size:1rem; }
-    .acc-body{
-      max-height:0;
-      overflow:hidden;
-      transition:max-height .35s ease;
-      color:var(--muted);
-    }
-    .acc-body > div{
-      padding:0 18px 16px;
-      line-height:1.9;
-    }
-    .acc-item.open .acc-body{ max-height:220px; }
 
-    .timeline{
-      display:grid;
-      gap:12px;
+    .link-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(255,255,255,.18);
+      box-shadow:0 18px 50px rgba(0,0,0,.25);
     }
-    .step{
-      display:grid;
-      grid-template-columns:auto 1fr;
+
+    .left{
+      display:flex;
+      align-items:center;
       gap:14px;
-      padding:16px;
-      border-radius:20px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
+      min-width:0;
     }
-    .num{
-      width:42px;height:42px;
-      border-radius:50%;
-      display:grid;place-items:center;
-      background:linear-gradient(135deg, rgba(124,92,255,.3), rgba(38,224,255,.18));
+
+    .icon{
+      width:52px;height:52px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, rgba(124,92,255,.28), rgba(38,224,255,.16));
       border:1px solid rgba(255,255,255,.12);
-      font-weight:800;
-      box-shadow:0 0 26px rgba(124,92,255,.16);
+      font-size:22px;
+      flex:0 0 auto;
+      box-shadow:0 0 22px rgba(38,224,255,.10);
     }
-    .step h4{ margin:0 0 5px; }
-    .step p{ margin:0; color:var(--muted); line-height:1.8; }
+
+    .meta{
+      min-width:0;
+    }
+
+    .meta strong{
+      display:block;
+      font-size:1.15rem;
+      margin-bottom:4px;
+    }
+
+    .meta span{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .arrow{
+      font-size:1.6rem;
+      color:var(--accent2);
+      flex:0 0 auto;
+    }
 
     .footer-note{
       margin-top:18px;
@@ -517,6 +280,7 @@
       border:1px solid rgba(255,204,102,.16);
       color:#ffe7b0;
       line-height:1.9;
+      font-size:.98rem;
     }
 
     .floating-top{
@@ -536,22 +300,6 @@
       animation:bounce 2.8s ease-in-out infinite;
     }
 
-    @keyframes orbit{
-      from{ transform: rotate(0deg) translateX(0) rotate(0deg); }
-      to{ transform: rotate(360deg) translateX(0) rotate(-360deg); }
-    }
-    @keyframes orbitReverse{
-      from{ transform: rotate(360deg) translateX(0) rotate(-360deg); }
-      to{ transform: rotate(0deg) translateX(0) rotate(0deg); }
-    }
-    @keyframes spin3d{
-      from{ transform: rotateY(0deg) rotateX(10deg) rotateZ(0deg); }
-      to{ transform: rotateY(360deg) rotateX(10deg) rotateZ(360deg); }
-    }
-    @keyframes spin2{
-      from{ transform: rotateX(68deg) rotateZ(0deg); }
-      to{ transform: rotateX(68deg) rotateZ(360deg); }
-    }
     @keyframes pulse{
       0%,100%{ transform:scale(1); opacity:.75; }
       50%{ transform:scale(1.08); opacity:1; }
@@ -560,457 +308,126 @@
       0%,100%{ transform:translateY(0); }
       50%{ transform:translateY(-8px); }
     }
-    @keyframes drift{
-      0%,100%{ transform:translate3d(0,0,0) rotate(0deg); }
-      50%{ transform:translate3d(0,-10px,20px) rotate(4deg); }
-    }
-    @keyframes float{
-      0%,100%{ transform:translateY(0) scale(1); }
-      50%{ transform:translateY(-12px) scale(1.05); }
-    }
 
-    @media (max-width: 1024px){
-      .hero{ grid-template-columns:1fr; min-height:auto; padding-top:0; }
-      .flip-grid{ grid-template-columns:repeat(2,1fr); }
-      .grid-3{ grid-template-columns:repeat(2,1fr); }
-    }
-    @media (max-width: 720px){
-      .wrap{ width:min(100% - 16px, 1200px); }
-      .hero-copy, .section{ padding:20px; }
-      .stats, .grid-2, .grid-3, .flip-grid{ grid-template-columns:1fr; }
-      .stage{ min-height:420px; }
-      .tag{ font-size:12px; padding:8px 12px; }
-      .floating-top{ left:12px; bottom:12px; }
-    }
-
-    /* Scroll reveal */
     .reveal{
       opacity:0;
       transform: translateY(18px);
       transition: opacity .7s ease, transform .7s ease;
     }
+
     .reveal.visible{
       opacity:1;
       transform: translateY(0);
     }
+
+    @media (max-width: 1024px){
+      .hero{ grid-template-columns:1fr; min-height:auto; padding-top:0; }
+    }
+
+    @media (max-width: 720px){
+      .wrap{ width:min(100% - 16px, 1100px); }
+      .hero-copy, .menu{ padding:20px; }
+      .stats{ grid-template-columns:1fr; }
+      .link-card{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .arrow{ align-self:flex-end; }
+      .floating-top{ left:12px; bottom:12px; }
+    }
   </style>
 </head>
 <body>
-  <div class="bg-orbits"></div>
-  <div class="orb one"></div>
-  <div class="orb two"></div>
-  <div class="orb three"></div>
-  <div class="cursor-glow" id="cursorGlow"></div>
-
   <a class="floating-top" href="#top" aria-label="العودة للأعلى">↑</a>
 
   <main class="wrap" id="top">
     <section class="hero">
       <div class="panel hero-copy reveal">
-        <div class="badge"><span class="dot"></span> دليل تفاعلي لقناة تعليم البرمجة</div>
-        <h1 class="gradient-text">قناة برمجة واضحة، سريعة، ومبنية على التطبيق</h1>
+        <div class="badge"><span class="dot"></span> الصفحة الرئيسية للدليل التفاعلي</div>
+        <h1 class="gradient-text">اختار الجزء اللي تبدأ منه</h1>
         <p class="lead">
-          هذه الصفحة تحوّل الفكرة التي كتبتها إلى عرض بصري تفاعلي: تصميم زجاجي، حركة 3D في الخلفية،
-          بطاقات تقلب، تأثيرات توهج، ومسار محتوى منظم يساعدك تبني قناة قوية يفهمها المشاهد ويطبق معها بنفسه.
+          دي صفحة البداية الرئيسية، ومن هنا تقدر تروح مباشرة إلى:
+          الـ Hook، أو الوصف، أو الخطة.
         </p>
+
         <div class="actions">
-          <a class="btn" href="#content">ابدأ من المحتوى</a>
-          <a class="btn secondary" href="#script">هيكل السكريبت</a>
+          <a class="btn" href="hook.html">ابدأ الآن</a>
+          <a class="btn secondary" href="description.html">اذهب للوصف</a>
         </div>
+
         <div class="stats">
           <div class="stat">
-            <strong>4</strong>
-            <span>أنواع محتوى منظمة</span>
-          </div>
-          <div class="stat">
-            <strong>5</strong>
-            <span>مراحل واضحة لأي فيديو</span>
+            <strong>3</strong>
+            <span>أقسام رئيسية</span>
           </div>
           <div class="stat">
             <strong>1</strong>
-            <span>مسار قناة متصل</span>
+            <span>صفحة بداية واضحة</span>
+          </div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span>تنقّل سريع وبسيط</span>
           </div>
         </div>
       </div>
 
       <div class="panel stage reveal">
-        <div class="ring-3d" aria-hidden="true">
-          <div class="rim"></div>
-          <div class="rim two"></div>
-          <div class="rim three"></div>
-          <div class="core"></div>
-          <div class="hole"></div>
-          <div class="floating-tags">
-            <div class="tag t1">3D Glow</div>
-            <div class="tag t2">Flip</div>
-            <div class="tag t3">Bounce</div>
-            <div class="tag t4">Glass UI</div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <div class="menu">
+          <h2>الصفحات المتاحة</h2>
+          <p>اضغط على أي بطاقة للدخول إلى الصفحة المطلوبة.</p>
 
-    <section class="panel section reveal" id="content">
-      <h2>الفكرة الأساسية للقناة</h2>
-      <p class="sub">
-        القناة هنا ليست مجرد شرح كود. الهدف الحقيقي هو تبسيط المفاهيم، توصيل المعلومة بسرعة،
-        ومساعدة المشاهد يطبق بنفسه. كل فيديو لازم يجاوب على سؤال واحد: المشاهد هيطلع منه بإيه؟
-      </p>
-      <div class="grid-2">
-        <div class="card">
-          <div class="inner">
-            <div class="icon">🎯</div>
-            <h3>هدف واضح</h3>
-            <p>كل فيديو له نتيجة مباشرة: فهم، تطبيق، حل مشكلة، أو بناء مشروع.</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="inner">
-            <div class="icon">⚡</div>
-            <h3>شرح سريع</h3>
-            <p>بدون لف ودوران. المعلومة تصل بشكل بسيط ومختصر، ثم ننتقل للتجربة العملية.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel section reveal">
-      <h2>أنواع المحتوى في قناة البرمجة</h2>
-      <p class="sub">محتواك يكون متنوع، لكن له ترتيب واضح. هذا التنوع يخدم الفهم ويمنع الملل.</p>
-
-      <div class="flip-grid">
-        <div class="flip">
-          <div class="box">
-            <div class="face front">
-              <div>
-                <div class="icon">1</div>
-                <h3>شرح المفاهيم</h3>
-                <p>مثل: ما هو HTML؟ ما هو JavaScript؟ الفرق بين let و var و const.</p>
+          <div class="grid">
+            <a class="link-card" href="hook.html">
+              <div class="left">
+                <div class="icon">⚡</div>
+                <div class="meta">
+                  <strong>Hook</strong>
+                  <span>بداية قوية تجذب الانتباه</span>
+                </div>
               </div>
-              <div class="chip-row">
-                <span class="chip">هدفه: الفهم</span>
+              <div class="arrow">←</div>
+            </a>
+
+            <a class="link-card" href="description.html">
+              <div class="left">
+                <div class="icon">📝</div>
+                <div class="meta">
+                  <strong>وصف</strong>
+                  <span>شرح الفكرة والمحتوى</span>
+                </div>
               </div>
-            </div>
-            <div class="face back">
-              <h3>التركيز هنا</h3>
-              <p>لا تكثر مصطلحات. اشرح الفكرة كأنك تبني أساسًا قبل أي تطبيق.</p>
-            </div>
-          </div>
-        </div>
+              <div class="arrow">←</div>
+            </a>
 
-        <div class="flip">
-          <div class="box">
-            <div class="face front">
-              <div>
-                <div class="icon">2</div>
-                <h3>تطبيق عملي</h3>
-                <p>إنشاء صفحة تسجيل دخول، آلة حاسبة، أو تصميم صفحة ويب كاملة.</p>
+            <a class="link-card" href="plan.html">
+              <div class="left">
+                <div class="icon">📌</div>
+                <div class="meta">
+                  <strong>خطة</strong>
+                  <span>الترتيب والخطوات القادمة</span>
+                </div>
               </div>
-              <div class="chip-row">
-                <span class="chip">هدفه: التطبيق</span>
-              </div>
-            </div>
-            <div class="face back">
-              <h3>التركيز هنا</h3>
-              <p>المشاهد يريد نتيجة يراها. أعطه خطوة + كود + شكل نهائي.</p>
-            </div>
+              <div class="arrow">←</div>
+            </a>
           </div>
-        </div>
 
-        <div class="flip">
-          <div class="box">
-            <div class="face front">
-              <div>
-                <div class="icon">3</div>
-                <h3>حل مشاكل</h3>
-                <p>لماذا الكود لا يعمل؟ ما الأخطاء الشائعة؟ وكيف تصلحها بسرعة؟</p>
-              </div>
-              <div class="chip-row">
-                <span class="chip">هدفه: حل ألم حقيقي</span>
-              </div>
-            </div>
-            <div class="face back">
-              <h3>التركيز هنا</h3>
-              <p>هذه الفيديوهات تجذب الأشخاص الجاهزين للتعلم لأنها تعالج مشكلة مباشرة.</p>
-            </div>
+          <div class="footer-note">
+            كل زر يفتح ملفه مباشرة: <b>hook.html</b> و <b>description.html</b> و <b>plan.html</b>.
           </div>
         </div>
-
-        <div class="flip">
-          <div class="box">
-            <div class="face front">
-              <div>
-                <div class="icon">4</div>
-                <h3>مشاريع كاملة</h3>
-                <p>موقع شخصي، تطبيق مهام، متجر بسيط، أو أي مشروع يبني مهارة حقيقية.</p>
-              </div>
-              <div class="chip-row">
-                <span class="chip">هدفه: بناء المهارة</span>
-              </div>
-            </div>
-            <div class="face back">
-              <h3>التركيز هنا</h3>
-              <p>المشاريع تربط كل ما تعلمه المشاهد في تجربة واحدة واضحة ومفيدة.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel section reveal">
-      <h2>اختيار فكرة الفيديو</h2>
-      <p class="sub">لا تجعل الفكرة عامة جدًا. كلما كانت محددة، زاد اهتمام المشاهد وفهمه لما سيحصل عليه.</p>
-      <div class="grid-2">
-        <div class="card">
-          <div class="inner">
-            <div class="icon">❌</div>
-            <h3>فكرة عامة جدًا</h3>
-            <p>تعلم البرمجة</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="inner">
-            <div class="icon">✅</div>
-            <h3>فكرة محددة</h3>
-            <p>أول مشروع HTML للمبتدئين، أو تعلم JavaScript من الصفر في 20 دقيقة.</p>
-          </div>
-        </div>
-      </div>
-      <div class="footer-note">
-        القاعدة البسيطة: كل ما كانت الفكرة محددة، كانت النتائج أفضل، والعنوان أقوى، والشرح أسهل.
-      </div>
-    </section>
-
-    <section class="panel section reveal" id="script">
-      <h2>هيكل سكريبت الفيديو</h2>
-      <p class="sub">أي فيديو ناجح يمشي على بنية واضحة من البداية للنهاية، بدون حشو أو قفز بين الأفكار.</p>
-
-      <div class="timeline">
-        <div class="step">
-          <div class="num">1</div>
-          <div>
-            <h4>Hook — أول 10 ثوانٍ</h4>
-            <p>شد الانتباه بجملة قوية مثل: "في الفيديو ده هتعمل أول موقع ليك".</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="num">2</div>
-          <div>
-            <h4>مقدمة قصيرة</h4>
-            <p>وضح هتشرح إيه بدون إطالة، وخلي المشاهد يفهم بسرعة مسار الفيديو.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="num">3</div>
-          <div>
-            <h4>الشرح</h4>
-            <p>قسّم الموضوع إلى نقاط، وكل نقطة تكون فكرة واحدة مع مثال بسيط.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="num">4</div>
-          <div>
-            <h4>التطبيق</h4>
-            <p>نفّذ الكود أمام المشاهد وخليه يرى النتيجة بنفسه.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="num">5</div>
-          <div>
-            <h4>الخاتمة</h4>
-            <p>لخّص بسرعة وأعطه شيء يطبقه بعد الفيديو حتى يثبت التعلم.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel section reveal">
-      <h2>أسلوب الشرح الصح</h2>
-      <div class="accordion" id="accordion">
-        <div class="acc-item open">
-          <button class="acc-head" type="button">
-            <strong>✅ لازم: تبسيط + أمثلة + خطوات واضحة</strong>
-            <span>−</span>
-          </button>
-          <div class="acc-body">
-            <div>اشرح الفكرة بلغة قريبة من المشاهد، واستخدم مثالًا حياتيًا أو بصريًا يختصر الطريق للفهم.</div>
-          </div>
-        </div>
-        <div class="acc-item">
-          <button class="acc-head" type="button">
-            <strong>❌ بلاش: مصطلحات معقدة بدون شرح</strong>
-            <span>+</span>
-          </button>
-          <div class="acc-body">
-            <div>المصطلحات مهمة، لكن بدون شرحها تصبح حاجزًا بدل ما تكون وسيلة تعليم.</div>
-          </div>
-        </div>
-        <div class="acc-item">
-          <button class="acc-head" type="button">
-            <strong>❌ بلاش: القفز بين الأفكار</strong>
-            <span>+</span>
-          </button>
-          <div class="acc-body">
-            <div>امشِ خطوة خطوة حتى يشعر المشاهد أنه يبني المهارة وليس مجرد يشاهد مشهدًا متقطعًا.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel section reveal">
-      <h2>السر الحقيقي: التطبيق</h2>
-      <p class="sub">
-        الفيديو الجيد لا يكتفي بالمشاهدة. يجب أن يحتوي على مثال وكود ونتيجة واضحة.
-        الناس تتعلم بالتجربة، وليس بالمشاهدة فقط.
-      </p>
-      <div class="grid-3">
-        <div class="card">
-          <div class="inner">
-            <div class="icon">🧩</div>
-            <h3>مثال</h3>
-            <p>تعرض الفكرة بشكل بسيط قبل الدخول في الكود.</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="inner">
-            <div class="icon">⌨️</div>
-            <h3>كود</h3>
-            <p>اكتب الأكواد بوضوح، وبيّن دور كل جزء منها.</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="inner">
-            <div class="icon">👀</div>
-            <h3>نتيجة</h3>
-            <p>أظهر الشكل النهائي حتى يشعر المشاهد أنه أنجز شيئًا حقيقيًا.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel section reveal">
-      <h2>ربط الفيديوهات ببعض</h2>
-      <p class="sub">بدل فيديوهات عشوائية، اعمل مسارًا متسلسلًا يخلي المشاهد يكمل معك من أول خطوة إلى آخر مشروع.</p>
-      <div class="grid-2">
-        <div class="card">
-          <div class="inner">
-            <div class="icon">📚</div>
-            <h3>HTML → CSS → JavaScript</h3>
-            <p>تعليم متدرج يبني الأساس ثم يضيف الشكل ثم الحركة والمنطق.</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="inner">
-            <div class="icon">🚀</div>
-            <h3>ثم مشروع</h3>
-            <p>بعد كل مرحلة، اجمع ما تعلمته في مشروع صغير ثم مشروع أكبر.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel section reveal">
-      <h2>أخطاء لازم تتجنبها</h2>
-      <div class="grid-2">
-        <div class="card"><div class="inner"><div class="icon">1</div><h3>شرح أعلى من مستوى الجمهور</h3><p>ابدأ من حيث يقف المشاهد فعلًا، لا من حيث تتمنى أن يكون.</p></div></div>
-        <div class="card"><div class="inner"><div class="icon">2</div><h3>فيديو بدون هدف</h3><p>كل فيديو يجب أن يخرج بنتيجة يمكن قياسها أو ملاحظتها.</p></div></div>
-        <div class="card"><div class="inner"><div class="icon">3</div><h3>عدم وجود تطبيق عملي</h3><p>الكود وحده لا يكفي، لا بد من تنفيذ ونتيجة.</p></div></div>
-        <div class="card"><div class="inner"><div class="icon">4</div><h3>عناوين عامة جدًا</h3><p>العنوان المحدد يحصد نية البحث والاهتمام بشكل أفضل.</p></div></div>
-      </div>
-    </section>
-
-    <section class="panel section reveal">
-      <h2>نموذج عملي لفيديو</h2>
-      <div class="grid-2">
-        <div class="card">
-          <div class="inner">
-            <div class="icon">📝</div>
-            <h3>عنوان</h3>
-            <p>عمل صفحة تسجيل دخول باستخدام HTML و CSS</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="inner">
-            <div class="icon">🛠️</div>
-            <h3>داخل الفيديو</h3>
-            <p>مقدمة، شرح العناصر، كتابة الكود، النتيجة، تعديل بسيط، ثم تكليف للمشاهد.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel section reveal">
-      <h2>كيف تكتب سكريبت سريع</h2>
-      <p class="sub">قبل أي فيديو اكتب هذه الخمس نقاط بشكل مختصر، وستجد أن الشرح أصبح أسهل وترتيبه أقوى.</p>
-      <div class="grid-3">
-        <div class="card"><div class="inner"><div class="icon">A</div><h3>الفكرة</h3><p>ما الموضوع الذي ستشرحه؟</p></div></div>
-        <div class="card"><div class="inner"><div class="icon">B</div><h3>الهدف</h3><p>ماذا يجب أن يفهم أو ينجز المشاهد؟</p></div></div>
-        <div class="card"><div class="inner"><div class="icon">C</div><h3>3 نقاط</h3><p>اختر ثلاث نقاط رئيسية فقط.</p></div></div>
-        <div class="card"><div class="inner"><div class="icon">D</div><h3>مثال</h3><p>ضع مثالًا عمليًا واضحًا.</p></div></div>
-        <div class="card"><div class="inner"><div class="icon">E</div><h3>خاتمة</h3><p>اختم بخلاصة وتكليف صغير للتطبيق.</p></div></div>
-      </div>
-    </section>
-
-    <section class="panel section reveal">
-      <h2>الخلاصة</h2>
-      <p class="sub">
-        قناة البرمجة الناجحة تعتمد على: فكرة واضحة + شرح بسيط + تطبيق عملي + تنظيم.
-        إذا التزمت بهذه المعادلة، يمكنك بناء قناة قوية حتى لو بدأت بإمكانيات بسيطة.
-      </p>
-      <div class="footer-note">
-        هذه الصفحة مصممة لتكون ملف HTML واحد جاهز، ويمكنك فتحه مباشرة في المتصفح أو تعديله لاحقًا بسهولة.
       </div>
     </section>
   </main>
 
   <script>
-    const glow = document.getElementById('cursorGlow');
-    window.addEventListener('mousemove', (e) => {
-      glow.style.left = e.clientX + 'px';
-      glow.style.top = e.clientY + 'px';
-    });
-
-    // Accordion
-    document.querySelectorAll('.acc-item').forEach((item) => {
-      const btn = item.querySelector('.acc-head');
-      btn.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.acc-item').forEach(el => {
-          el.classList.remove('open');
-          const span = el.querySelector('.acc-head span');
-          if (span) span.textContent = '+';
-        });
-        if (!isOpen) {
-          item.classList.add('open');
-          btn.querySelector('span').textContent = '−';
-        }
-      });
-    });
-
-    // Scroll reveal
     const revealEls = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add('visible');
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.15 });
-    revealEls.forEach(el => io.observe(el));
 
-    // Gentle parallax with mouse
-    const stage = document.querySelector('.stage');
-    stage?.addEventListener('mousemove', (e) => {
-      const rect = stage.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      const ring = stage.querySelector('.ring-3d');
-      if (ring) {
-        ring.style.transform = `rotateY(${x * 12}deg) rotateX(${10 - y * 10}deg)`;
-      }
-    });
-    stage?.addEventListener('mouseleave', () => {
-      const ring = stage.querySelector('.ring-3d');
-      if (ring) ring.style.transform = '';
-    });
+    revealEls.forEach(el => io.observe(el));
   </script>
 </body>
 </html>
