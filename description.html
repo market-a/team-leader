@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>استخراج أفكار الفيديو + الكلمات المفتاحية + خطة محتوى لقناة البرمجة</title>
+<style>
+:root{
+  --bg1:#050816;
+  --bg2:#0b1222;
+  --glass:rgba(255,255,255,.08);
+  --glass2:rgba(255,255,255,.12);
+  --line:rgba(255,255,255,.12);
+  --text:#ecf2ff;
+  --muted:#b9c6e4;
+  --accent:#66e3ff;
+  --accent2:#9b7bff;
+  --accent3:#6bffb3;
+  --shadow:0 18px 60px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(102,227,255,.16), transparent 25%),
+    radial-gradient(circle at 80% 10%, rgba(155,123,255,.18), transparent 22%),
+    radial-gradient(circle at 50% 80%, rgba(107,255,179,.12), transparent 24%),
+    linear-gradient(145deg,var(--bg1),var(--bg2));
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+body::before, body::after{
+  content:"";
+  position:fixed;
+  inset:auto;
+  border-radius:50%;
+  pointer-events:none;
+  filter:blur(2px);
+  opacity:.75;
+}
+body::before{
+  width:260px; height:260px;
+  top:8%; left:7%;
+  background:radial-gradient(circle, rgba(102,227,255,.22), transparent 68%);
+  animation:floatA 10s ease-in-out infinite;
+}
+body::after{
+  width:340px; height:340px;
+  bottom:6%; right:2%;
+  background:radial-gradient(circle, rgba(155,123,255,.18), transparent 68%);
+  animation:floatB 13s ease-in-out infinite;
+}
+
+@keyframes floatA{
+  0%,100%{transform:translateY(0) translateX(0) scale(1)}
+  50%{transform:translateY(18px) translateX(10px) scale(1.08)}
+}
+@keyframes floatB{
+  0%,100%{transform:translateY(0) translateX(0) scale(1)}
+  50%{transform:translateY(-22px) translateX(-14px) scale(1.06)}
+}
+
+.bg-ring{
+  position:fixed;
+  inset:50% auto auto 50%;
+  width:520px;
+  height:520px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 0 0 20px rgba(255,255,255,.02), 0 0 45px rgba(102,227,255,.10);
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,.02) 0 30%, transparent 31%),
+    conic-gradient(from 0deg, rgba(102,227,255,.0), rgba(102,227,255,.28), rgba(155,123,255,.24), rgba(107,255,179,.24), rgba(102,227,255,.0));
+  mask: radial-gradient(circle, transparent 0 40%, #000 41% 100%);
+  opacity:.65;
+  animation:spin 16s linear infinite;
+  pointer-events:none;
+  z-index:0;
+}
+.bg-ring::before{
+  content:"";
+  position:absolute;
+  inset:26px;
+  border-radius:50%;
+  border:1px dashed rgba(255,255,255,.14);
+  box-shadow:inset 0 0 26px rgba(255,255,255,.04);
+  animation:spinReverse 22s linear infinite;
+}
+@keyframes spin{
+  from{transform:translate(-50%,-50%) rotate(0deg)}
+  to{transform:translate(-50%,-50%) rotate(360deg)}
+}
+@keyframes spinReverse{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(-360deg)}
+}
+
+.container{
+  position:relative;
+  z-index:2;
+  width:min(1100px, calc(100% - 24px));
+  margin:0 auto;
+  padding:24px 0 60px;
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+  box-shadow:var(--shadow);
+  border-radius:28px;
+  padding:28px;
+  backdrop-filter: blur(16px);
+  transform-style:preserve-3d;
+  animation:heroFloat 6s ease-in-out infinite;
+}
+@keyframes heroFloat{
+  0%,100%{transform:translateY(0) rotateX(0deg)}
+  50%{transform:translateY(-6px) rotateX(2deg)}
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:auto -20% -60% auto;
+  width:360px;
+  height:360px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(102,227,255,.18), transparent 62%);
+  filter:blur(6px);
+  animation:pulse 4s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(.96); opacity:.8}
+  50%{transform:scale(1.08); opacity:1}
+}
+
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:18px;
+}
+.badge{
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.10);
+  color:var(--text);
+  font-size:14px;
+  box-shadow:0 0 20px rgba(102,227,255,.06);
+  animation:glowPulse 3.2s ease-in-out infinite;
+}
+.badge:nth-child(2){animation-delay:.3s}
+.badge:nth-child(3){animation-delay:.6s}
+.badge:nth-child(4){animation-delay:.9s}
+
+@keyframes glowPulse{
+  0%,100%{transform:translateY(0); box-shadow:0 0 0 rgba(102,227,255,0)}
+  50%{transform:translateY(-2px); box-shadow:0 0 22px rgba(102,227,255,.16)}
+}
+
+h1{
+  margin:0 0 12px;
+  font-size:clamp(28px, 4vw, 48px);
+  line-height:1.2;
+  text-shadow:0 0 18px rgba(102,227,255,.30);
+}
+.sub{
+  margin:0;
+  font-size:17px;
+  color:var(--muted);
+  line-height:1.9;
+  max-width:900px;
+}
+
+.grid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  gap:16px;
+}
+
+.card{
+  grid-column:span 6;
+  position:relative;
+  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  backdrop-filter: blur(14px);
+  padding:18px 18px 16px;
+  transform-style:preserve-3d;
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  cursor:pointer;
+  overflow:hidden;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(102,227,255,.08), transparent 35%, rgba(155,123,255,.08));
+  opacity:.7;
+  pointer-events:none;
+}
+.card:hover{
+  transform:translateY(-6px) rotateX(4deg) rotateY(-4deg) scale(1.01);
+  box-shadow:0 24px 68px rgba(0,0,0,.42), 0 0 26px rgba(102,227,255,.12);
+  border-color:rgba(102,227,255,.25);
+}
+.card:active{
+  transform:translateY(0) scale(.985);
+}
+.card.full{grid-column:span 12}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 12px;
+  font-size:22px;
+}
+.icon{
+  width:38px;
+  height:38px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, rgba(102,227,255,.18), rgba(155,123,255,.18));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 0 18px rgba(102,227,255,.08);
+  transform:translateZ(24px);
+}
+
+p, li{
+  color:var(--text);
+  line-height:1.9;
+  font-size:16px;
+  margin:0;
+}
+.muted{color:var(--muted)}
+ul{
+  margin:10px 0 0;
+  padding:0 18px 0 0;
+}
+li{margin-bottom:8px}
+
+.kbd{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.key{
+  display:inline-block;
+  padding:6px 11px;
+  border-radius:10px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.12);
+  margin:4px 6px 0 0;
+  box-shadow:0 0 18px rgba(102,227,255,.06);
+  transition:.25s;
+}
+.key:hover{transform:translateY(-2px) scale(1.04); background:rgba(255,255,255,.14)}
+
+.timeline{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:10px;
+}
+.step{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;
+  padding:14px;
+  min-height:150px;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.step:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 24px rgba(102,227,255,.08);
+}
+.step h3{
+  margin:0 0 10px;
+  font-size:18px;
+  color:#fff;
+}
+.step small{
+  display:inline-block;
+  margin-bottom:8px;
+  color:var(--accent);
+  font-weight:bold;
+}
+
+.plan{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.plan-item{
+  padding:14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+}
+
+.tag{
+  display:inline-block;
+  margin-top:10px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(102,227,255,.12);
+  border:1px solid rgba(102,227,255,.22);
+  color:#dffaff;
+  font-size:13px;
+}
+
+.footer-note{
+  margin-top:16px;
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.flip{
+  perspective:1200px;
+}
+.flip-inner{
+  transform-style:preserve-3d;
+  transition:transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.flip:hover .flip-inner{
+  transform:rotateY(180deg);
+}
+.flip-face{
+  backface-visibility:hidden;
+}
+.flip-back{
+  transform:rotateY(180deg);
+  position:absolute;
+  inset:0;
+  padding:18px;
+  background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+  border-radius:24px;
+}
+
+.bounce{
+  animation:bounceY 2.8s ease-in-out infinite;
+}
+@keyframes bounceY{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+.glow{
+  text-shadow:0 0 10px rgba(102,227,255,.35), 0 0 22px rgba(155,123,255,.18);
+}
+
+@media (max-width: 900px){
+  .card{grid-column:span 12}
+  .timeline,.plan{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="bg-ring" aria-hidden="true"></div>
+
+<div class="container">
+  <section class="hero">
+    <div class="badges">
+      <span class="badge">تفاعلي</span>
+      <span class="badge">Glassmorphism</span>
+      <span class="badge">3D Motion</span>
+      <span class="badge">Glow Effects</span>
+    </div>
+    <h1 class="glow">استخراج أفكار الفيديو + الكلمات المفتاحية + خطة محتوى لقناة البرمجة</h1>
+    <p class="sub">
+      نجاح قناة البرمجة = اختيار أفكار عليها بحث + تقديمها بشكل بسيط + الاستمرار.
+      المشكلة مش في الشرح… المشكلة في اختيار الفيديو الغلط.
+    </p>
+  </section>
+
+  <div class="grid">
+    <article class="card full bounce">
+      <div class="section-title"><span class="icon">1</span><h2>الفكرة الأساسية</h2></div>
+      <p>نجاح قناة البرمجة يعتمد على ثلاث حاجات: فكرة عليها بحث، شرح سهل وواضح، واستمرار منظم.</p>
+      <p class="muted" style="margin-top:10px;">أي فيديو لازم يخدم هدف واضح: المشاهد هيتعلم إيه أو هينفذ إيه بعد الفيديو؟</p>
+    </article>
+
+    <article class="card flip">
+      <div class="flip-inner">
+        <div class="flip-face">
+          <div class="section-title"><span class="icon">🔍</span><h2>أولًا: استخراج أفكار الفيديوهات</h2></div>
+          <ul>
+            <li>من جوجل: اكتب كلمات مثل <span class="key">تعلم البرمجة</span> أو <span class="key">JavaScript</span> أو <span class="key">HTML</span>.</li>
+            <li>هتلاقي اقتراحات جاهزة مثل: تعلم البرمجة من الصفر، تعلم JavaScript للمبتدئين، كيفية إنشاء موقع.</li>
+            <li>“People also ask”: كل سؤال هناك يصلح لفيديو مستقل.</li>
+            <li>من يوتيوب: راقب العناوين والفيديوهات الأعلى مشاهدة.</li>
+            <li>من التعليقات: شوف الناس بتسأل عن إيه في فيديوهات المنافسين.</li>
+            <li>المشاكل هي الأقوى: الكود لا يعمل، مشكلة في CSS، Error في JavaScript.</li>
+          </ul>
+        </div>
+        <div class="flip-back">
+          <div class="section-title"><span class="icon">💡</span><h2>طريقة ذكية</h2></div>
+          <p>كل سؤال أو مشكلة أو اقتراح بحث = فكرة فيديو جاهزة.</p>
+          <p style="margin-top:10px;">اعمل قائمة يومية من 10 أفكار، ثم اختار الأكثر وضوحًا والأقرب لجمهورك المبتدئ.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="section-title"><span class="icon">🧠</span><h2>ثانيًا: الكلمات المفتاحية</h2></div>
+      <p><strong>تعليمية:</strong> كيف، تعلم، شرح.</p>
+      <p style="margin-top:8px;"><strong>تطبيقية:</strong> عمل، إنشاء، بناء.</p>
+      <p style="margin-top:8px;"><strong>مشاكل:</strong> حل مشكلة، Error، لا يعمل.</p>
+      <p style="margin-top:10px;">مثال: <span class="key">تعلم JavaScript من الصفر للمبتدئين</span></p>
+      <p class="muted" style="margin-top:10px;">كل ما الكلمة أطول وأوضح، تكون المنافسة أقل وغالبًا النية أوضح.</p>
+    </article>
+
+    <article class="card">
+      <div class="section-title"><span class="icon">📊</span><h2>إزاي تختار الكلمة الصح؟</h2></div>
+      <ul>
+        <li>عليها بحث.</li>
+        <li>مش صعبة جدًا.</li>
+        <li>مفهومة وواضحة.</li>
+      </ul>
+      <p style="margin-top:12px;">مثال ممتاز: <span class="key">كيفية إنشاء موقع HTML للمبتدئين</span></p>
+    </article>
+
+    <article class="card full">
+      <div class="section-title"><span class="icon">🧩</span><h2>ثالثًا: تحويل الكلمة لفيديو</h2></div>
+      <p>الكلمة: <span class="key">تعلم HTML</span></p>
+      <p style="margin-top:10px;">تتحول إلى:</p>
+      <div class="timeline" style="margin-top:14px;">
+        <div class="step">
+          <small>فكرة 1</small>
+          <h3>تعلم HTML من الصفر في ساعة</h3>
+          <p>فيديو شامل وبسيط.</p>
+        </div>
+        <div class="step">
+          <small>فكرة 2</small>
+          <h3>أول مشروع HTML للمبتدئين</h3>
+          <p>تطبيق عملي سريع.</p>
+        </div>
+        <div class="step">
+          <small>فكرة 3</small>
+          <h3>شرح HTML بطريقة بسيطة</h3>
+          <p>أسلوب خفيف ومباشر.</p>
+        </div>
+        <div class="step">
+          <small>النتيجة</small>
+          <h3>نفس الفكرة = 3 فيديوهات</h3>
+          <p>يعني موضوع واحد يطلع منه سلسلة كاملة.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full">
+      <div class="section-title"><span class="icon">🧠</span><h2>رابعًا: أهم استراتيجية (Content Cluster)</h2></div>
+      <p>بدل فيديو واحد عن البرمجة، اعمل مسار متكامل يربط المحتوى ببعضه.</p>
+      <div class="plan" style="margin-top:14px;">
+        <div class="plan-item">كيف تبدأ البرمجة</div>
+        <div class="plan-item">تعلم HTML</div>
+        <div class="plan-item">تعلم CSS</div>
+        <div class="plan-item">تعلم JavaScript</div>
+        <div class="plan-item">أول مشروع</div>
+        <div class="plan-item">مشروع متقدم</div>
+      </div>
+      <p class="muted" style="margin-top:12px;">كده القناة تبقى مسار كامل، والمشاهد يكمل معاك من فيديو لفيديو.</p>
+    </article>
+
+    <article class="card full">
+      <div class="section-title"><span class="icon">📅</span><h2>خامسًا: خطة محتوى جاهزة (30 فيديو)</h2></div>
+      <div class="timeline">
+        <div class="step">
+          <small>الأسبوع 1</small>
+          <h3>أساسيات</h3>
+          <p>كيف تبدأ البرمجة من الصفر، أفضل لغة للمبتدئين، ما هو HTML، أول صفحة HTML، شرح CSS، أول تصميم بسيط، الفرق بين HTML و CSS.</p>
+        </div>
+        <div class="step">
+          <small>الأسبوع 2</small>
+          <h3>تطبيق</h3>
+          <p>إنشاء صفحة تسجيل دخول، تصميم Landing Page، مشروع بسيط كامل، Flexbox شرح، Responsive Design، أخطاء CSS الشائعة، تحسين التصميم.</p>
+        </div>
+        <div class="step">
+          <small>الأسبوع 3</small>
+          <h3>JavaScript</h3>
+          <p>ما هو JavaScript، المتغيرات، الشروط، الحلقات، الدوال، DOM، مشروع JavaScript بسيط.</p>
+        </div>
+        <div class="step">
+          <small>الأسبوع 4</small>
+          <h3>تطوير + مشاكل</h3>
+          <p>حل مشاكل JavaScript، لماذا الكود لا يعمل، Debugging، تحسين الأداء، أفضل أدوات البرمجة، كيف تبني Portfolio، كيف تبدأ Freelancing، مشروع متكامل، نصائح للمبتدئين.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="section-title"><span class="icon">🎯</span><h2>سادسًا: طريقة تنفيذ الخطة</h2></div>
+      <ul>
+        <li>فيديو كل يوم أو يومين.</li>
+        <li>مدة الفيديو: 8 – 15 دقيقة.</li>
+        <li>ركّز على الوضوح والتطبيق والبساطة.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <div class="section-title"><span class="icon">⚠️</span><h2>أخطاء لازم تتجنبها</h2></div>
+      <ul>
+        <li>اختيار أفكار بدون بحث.</li>
+        <li>فيديوهات عامة جدًا.</li>
+        <li>عدم الاستمرار.</li>
+        <li>عدم وجود خطة.</li>
+        <li>تقليد بدون تطوير.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <div class="section-title"><span class="icon">💡</span><h2>أهم 5 تركات</h2></div>
+      <div class="plan">
+        <div class="plan-item">ابدأ دائمًا بالمبتدئين</div>
+        <div class="plan-item">خليك بسيط</div>
+        <div class="plan-item">اعمل مشاريع</div>
+        <div class="plan-item">اربط الفيديوهات ببعض</div>
+      </div>
+      <div style="margin-top:12px" class="plan-item">اسمع للجمهور</div>
+    </article>
+
+    <article class="card full">
+      <div class="section-title"><span class="icon">🔥</span><h2>الخلاصة</h2></div>
+      <p>نجاح قناة البرمجة = أفكار صح + كلمات مفتاحية صح + خطة واضحة + تنفيذ مستمر.</p>
+      <p class="muted" style="margin-top:10px;">اهمل دا بنفس الملف، والصفحة دي هتفضل جاهزة كمرجع تفاعلي مرتب.</p>
+      <div class="tag">جاهز للطباعة أو النشر أو التعديل</div>
+    </article>
+  </div>
+
+  <div class="footer-note">اضغط وحرّك وجرّب المرور على البطاقات لمشاهدة التأثيرات التفاعلية.</div>
+</div>
+
+<script>
+const cards = document.querySelectorAll('.card');
+cards.forEach((card, i) => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rotateY = ((x / rect.width) - 0.5) * 10;
+    const rotateX = ((y / rect.height) - 0.5) * -10;
+    card.style.transform = `translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+</script>
+</body>
+</html>
